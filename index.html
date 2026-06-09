@@ -191,9 +191,15 @@ img{max-width:100%; display:block}
   font-size:15px; padding:13px 22px; border-radius:13px; cursor:pointer; border:1px solid transparent; transition:.18s; white-space:nowrap}
 .btn-primary{background:linear-gradient(135deg,#3b82f6,#6366f1); color:#fff; box-shadow:0 12px 34px rgba(59,130,246,.42)}
 .btn-primary:hover{transform:translateY(-2px); box-shadow:0 18px 44px rgba(59,130,246,.55)}
-/* по умолчанию — «стеклянный» вид (как раньше при наведении); на hover меняется ТОЛЬКО цвет контура — на синий кнопки «Скачать» */
-.btn-outline{background:var(--panel); border:1px solid rgba(255,255,255,.32); color:var(--text); box-shadow:none}
-.btn-outline:hover{border-color:#4f74f3; color:#4f74f3}
+/* по умолчанию — «стеклянный» вид; на hover — чуть светлее + ГРАДИЕНТНЫЕ контур и текст (как кнопка «Скачать») */
+.btn-outline{position:relative; background:var(--panel); border:1px solid rgba(255,255,255,.32); color:var(--text); box-shadow:none}
+.btn-outline>span{position:relative; z-index:1}
+.btn-outline::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:1.5px; pointer-events:none; opacity:0; transition:opacity .18s;
+  background:linear-gradient(135deg,#3b82f6,#6366f1);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude}
+.btn-outline:hover{background:rgba(255,255,255,.08); border-color:transparent}
+.btn-outline:hover::before{opacity:1}
+.btn-outline:hover>span{background:linear-gradient(135deg,#3b82f6,#6366f1); -webkit-background-clip:text; background-clip:text; color:transparent}
 .btn-lg{padding:18px 32px; font-size:17px; border-radius:15px}
 
 /* hero — асимметрия: текст слева, скрин справа */
@@ -280,7 +286,7 @@ h1.title{font-size:clamp(38px,5.4vw,62px); margin:20px 0 0; font-weight:800}
 .tech p{color:var(--muted); font-size:14.5px}
 
 /* privacy */
-.priv{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+.priv{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; list-style:none; margin:0; padding:0}
 @media(max-width:760px){.priv{grid-template-columns:1fr}}
 .priv li{list-style:none; display:flex; gap:13px; padding:18px 20px; border-radius:13px; background:var(--panel); border:1px solid var(--border)}
 .check{flex:none;width:24px;height:24px;border-radius:50%; background:rgba(57,217,138,.16); border:1px solid rgba(57,217,138,.4); display:grid;place-items:center}
@@ -397,7 +403,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
     <p class="lead">Голосовой ввод для Windows: зажали клавишу, сказали — текст вставлен в любое приложение. До&nbsp;3× быстрее печати.</p>
     <div class="cta-row">
       <a href="https://github.com/ARTOVI-AI/saypa/releases/latest/download/Saypa.exe" class="btn btn-primary btn-lg">Скачать для Windows</a>
-      <a href="#features" class="btn btn-outline btn-lg">Возможности</a>
+      <a href="#features" class="btn btn-outline btn-lg"><span>Возможности</span></a>
     </div>
     <div class="trust">
       <span><b>Бесплатно</b>, без рекламы</span>
@@ -656,10 +662,11 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
     <p class="lead center" style="margin:0 auto">Бесплатно, без регистрации. Установщик ~4 МБ, ставится за пару секунд и без прав администратора.</p>
     <div class="cta-row" style="justify-content:center;margin-top:34px">
       <a href="https://github.com/ARTOVI-AI/saypa/releases/latest/download/Saypa.exe" class="btn btn-primary btn-lg">Скачать для Windows</a>
-      <a href="https://github.com/ARTOVI-AI/saypa/releases" class="btn btn-outline btn-lg">Все версии на GitHub</a>
+      <a href="https://github.com/ARTOVI-AI/saypa/releases" class="btn btn-outline btn-lg"><span>Все версии на GitHub</span></a>
     </div>
     <div class="dl-os">
       <span class="os-now">● Windows 10 и 11 — доступно</span>
+      <span style="color:#ffb499">● macOS — скоро</span>
       <span>● Версия 0.2.1 · бесплатно</span>
     </div>
   </div>
