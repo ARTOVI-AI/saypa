@@ -133,19 +133,16 @@ img{max-width:100%; display:block}
 .grad-text{background:linear-gradient(100deg,#7aa2ff 0%,#a78bfa 45%,#22d3ee 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
 .muted{color:var(--muted)}
 .eyebrow{font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
-.section{padding:clamp(64px,9vw,128px) 0; position:relative}
+.section{padding:clamp(64px,9vw,128px) 0; position:relative;
+  content-visibility:auto; contain-intrinsic-size:auto 760px}
 .center{text-align:center}
 .lead{font-size:clamp(18px,2.1vw,21px); color:var(--muted); max-width:720px}
 .center .lead{margin-left:auto;margin-right:auto}
 
-/* ambient background */
-.bgfx{position:fixed; inset:0; z-index:-2; background:
-  radial-gradient(900px 600px at 12% -5%, rgba(59,130,246,.22), transparent 60%),
-  radial-gradient(800px 600px at 92% 4%, rgba(99,102,241,.20), transparent 60%),
-  radial-gradient(1100px 800px at 50% 120%, rgba(34,211,238,.10), transparent 60%),
-  linear-gradient(180deg,#06070c,#070912 40%,#06070c);}
-.grain{position:fixed; inset:0; z-index:-1; opacity:.035; pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* ambient glow — только вверху страницы (не полноэкранный fixed-слой: на 4K это дорого) */
+.bgfx{position:absolute; top:0; left:0; right:0; height:1400px; z-index:-2; pointer-events:none; background:
+  radial-gradient(900px 600px at 12% -2%, rgba(59,130,246,.20), transparent 60%),
+  radial-gradient(800px 600px at 92% 3%, rgba(99,102,241,.18), transparent 60%);}
 
 /* nav */
 .nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px);
@@ -412,7 +409,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 </style>
 </head>
 <body>
-<div class="bgfx"></div><div class="grain"></div>
+<div class="bgfx"></div>
 
 <!-- NAV -->
 <nav class="nav"><div class="wrap">
@@ -451,7 +448,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
   </div>
   <div class="hero-shot reveal in">
     <div class="hero-glow"></div>
-    <div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_settings.webp" alt="Главное окно Saypa"></div>
+    <div class="frame"><img class="zoom" loading="lazy" src="assets/p_settings.webp" alt="Главное окно Saypa"></div>
   </div>
 </div></header>
 
@@ -537,7 +534,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 
     <!-- Распознавание -->
     <div class="feat reveal">
-      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_settings.webp" alt="Вкладка Распознавание"></div></div>
+      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" src="assets/p_settings.webp" alt="Вкладка Распознавание"></div></div>
       <div>
         <span class="tag">Вкладка 1 · Распознавание</span>
         <h3>Главные настройки записи</h3>
@@ -555,7 +552,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 
     <!-- Интерфейс -->
     <div class="feat rev reveal">
-      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_iface.webp" alt="Вкладка Интерфейс"></div></div>
+      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" src="assets/p_iface.webp" alt="Вкладка Интерфейс"></div></div>
       <div>
         <span class="tag">Вкладка 2 · Интерфейс</span>
         <h3>Внешний вид и поведение</h3>
@@ -573,7 +570,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 
     <!-- Замены -->
     <div class="feat reveal">
-      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_replace.webp" alt="Вкладка Замены"></div></div>
+      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" src="assets/p_replace.webp" alt="Вкладка Замены"></div></div>
       <div>
         <span class="tag">Вкладка 3 · Замены</span>
         <h3>Текст под ваши правила</h3>
@@ -588,7 +585,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 
     <!-- История -->
     <div class="feat rev reveal">
-      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_history.webp" alt="Вкладка История"></div></div>
+      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" src="assets/p_history.webp" alt="Вкладка История"></div></div>
       <div>
         <span class="tag">Вкладка 4 · История</span>
         <h3>Все записи под рукой</h3>
@@ -605,7 +602,7 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
 
     <!-- Связаться -->
     <div class="feat reveal">
-      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_contact.webp" alt="Вкладка Связаться"></div></div>
+      <div class="featimg"><div class="frame"><img class="zoom" loading="lazy" src="assets/p_contact.webp" alt="Вкладка Связаться"></div></div>
       <div>
         <span class="tag">Вкладка 5 · Связаться</span>
         <h3>Обратная связь прямо из приложения</h3>
@@ -627,31 +624,31 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
     <div class="shead center reveal"><span class="eyebrow">Все окна и всплывающие элементы</span><h2>Каждое состояние продумано</h2><p class="lead">Не только главное окно — Saypa аккуратна в каждой детали интерфейса.</p></div>
     <div class="gal reveal">
       <figure class="wide">
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_player.webp" alt="Мини-плеер"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_player.webp" alt="Мини-плеер"></div>
         <figcaption><h4>Встроенный мини-плеер</h4><p>Прослушать любую запись прямо в Saypa: дата, длительность, число символов, перемотка — без внешнего проигрывателя.</p></figcaption>
       </figure>
       <figure class="wide">
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_export.webp" alt="Экспорт"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_export.webp" alt="Экспорт"></div>
         <figcaption><h4>Экспорт всех транскрипций</h4><p>Объединяет всю историю в один файл в формате <b>txt, html, md или xml</b> — удобно для архива или переноса.</p></figcaption>
       </figure>
       <figure>
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_emoji.webp" alt="Пикер эмодзи"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_emoji.webp" alt="Пикер эмодзи"></div>
         <figcaption><h4>Пикер цветных эмодзи</h4><p>~90 эмодзи в цвете для голосовых триггеров замен.</p></figcaption>
       </figure>
       <figure>
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_help.webp" alt="Подсказка по ключу"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_help.webp" alt="Подсказка по ключу"></div>
         <figcaption><h4>Подсказка по API-ключу</h4><p>Объясняет, зачем нужен ключ, и ведёт по прямой ссылке за бесплатным.</p></figcaption>
       </figure>
       <figure>
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_thanks.webp" alt="Окно благодарности"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_thanks.webp" alt="Окно благодарности"></div>
         <figcaption><h4>«Спасибо за обратную связь»</h4><p>Подтверждение после отправки сообщения из вкладки «Связаться».</p></figcaption>
       </figure>
       <figure class="wide">
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/p_update.webp" alt="Баннер обновления"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/p_update.webp" alt="Баннер обновления"></div>
         <figcaption><h4>Баннер «Доступно обновление»</h4><p>Появляется сам при выходе новой версии — обновление в один клик, с тихим звуковым сигналом.</p></figcaption>
       </figure>
       <figure class="wide">
-        <div class="imwrap"><img class="zoom" loading="lazy" decoding="async" src="assets/t_whatsnew.webp" alt="Что нового"></div>
+        <div class="imwrap"><img class="zoom" loading="lazy" src="assets/t_whatsnew.webp" alt="Что нового"></div>
         <figcaption><h4>«Что нового»</h4><p>Краткий список изменений показывается один раз после каждого обновления.</p></figcaption>
       </figure>
     </div>
@@ -668,8 +665,8 @@ kbd{font-family:'Manrope';font-weight:700;background:var(--panel2);border:1px so
   <div class="wrap">
     <div class="shead center reveal"><span class="eyebrow">Темы</span><h2>Тёмная и светлая — обе как надо</h2><p class="lead">Не просто инверсия цветов: в каждой теме свои карточки, рамки и контраст текста.</p></div>
     <div class="themes reveal">
-      <div class="theme"><h4>🌙 Тёмная</h4><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_iface.webp" alt="Тёмная тема"></div></div>
-      <div class="theme"><h4>☀️ Светлая</h4><div class="frame"><img class="zoom" loading="lazy" decoding="async" src="assets/p_iface_light.webp" alt="Светлая тема"></div></div>
+      <div class="theme"><h4>🌙 Тёмная</h4><div class="frame"><img class="zoom" loading="lazy" src="assets/p_iface.webp" alt="Тёмная тема"></div></div>
+      <div class="theme"><h4>☀️ Светлая</h4><div class="frame"><img class="zoom" loading="lazy" src="assets/p_iface_light.webp" alt="Светлая тема"></div></div>
     </div>
   </div>
 </section>
